@@ -5,7 +5,7 @@ will be added in later project stages.
 """
 
 from fastapi import FastAPI
-from app.api import health
+from app.api import health, categories, newsletter
 
 
 app = FastAPI(
@@ -14,3 +14,5 @@ app = FastAPI(
 )
 
 app.include_router(health.router)
+app.include_router(categories.router)
+app.include_router(newsletter.router)
