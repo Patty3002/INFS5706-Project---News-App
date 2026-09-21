@@ -2,6 +2,7 @@ import os
 from google import genai
 from google.genai import types
 from pydantic import BaseModel
+from dotenv import load_dotenv
 import json
 
 # Extracts the title, description, content and url from each article
@@ -23,7 +24,9 @@ class HeadlineSummary(BaseModel):
     url: str
 
 def get_summary(articles):
-    client = genai.Client()
+    load_dotenv()
+    gemini_key = os.getenv("GEMINI_API_KEY")
+    client = genai.Client(api_key=gemini_key)
     responses = list()
     for article in articles:
         prompt = f"""Act as a news analyst and summarise and analyse the following news headline data and produce a summary of each article. 
