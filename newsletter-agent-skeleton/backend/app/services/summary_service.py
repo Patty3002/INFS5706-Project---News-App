@@ -22,7 +22,6 @@ class HeadlineSummary(BaseModel):
     summary: str
     purpose: str
     url: str
-
 def get_summary(articles):
     load_dotenv()
     gemini_key = os.getenv("GEMINI_API_KEY")
