@@ -14,10 +14,10 @@ def get_headlines(category="business"):
     articles = get_top_headlines(category)
     no_invalids_newsapi = remove_incomplete_articles(articles)
     gnews_articles = get_top_headlines_gnews()
-    no_invalids_gnews = remove_duplicates(gnews_articles)
+    no_invalids_gnews = remove_incomplete_articles(gnews_articles)
     no_invalids = no_invalids_newsapi + no_invalids_gnews
     no_dups = remove_duplicates(no_invalids)
     prep = prep_summary(no_dups)
     summary = get_summary(prep)
     return summary
-
+    

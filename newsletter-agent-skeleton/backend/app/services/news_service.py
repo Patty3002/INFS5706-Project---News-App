@@ -9,7 +9,7 @@ load_dotenv()
 gnews_key = os.getenv("GNEWS_API_KEY")
 
 NEWS_API_URL = "https://newsapi.org/v2/top-headlines"
-GNEWS_API_URL = f"https://gnews.io/api/v4/top-headlines?category=general&apikey={gnews_key}"
+GNEWS_API_URL = f"https://gnews.io/api/v4/top-headlines?category=general&lang=en&country=us&max=10&&apikey={gnews_key}"
 
 
 # Gets the top headline for each category, country and page size,

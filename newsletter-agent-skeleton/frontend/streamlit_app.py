@@ -15,7 +15,7 @@ st.write("Welcome to your daily newsletter! Let's get started.")
 try:
     response = requests.get(
         API_URL,
-        timeout=30
+        timeout=60
     )
 
     response.raise_for_status()
