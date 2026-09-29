@@ -3,6 +3,7 @@ from google import genai
 from google.genai import types
 from pydantic import BaseModel
 from dotenv import load_dotenv
+from typing import List
 import json
 
 # Extracts the title, description, content and url from each article
@@ -22,15 +23,20 @@ class HeadlineSummary(BaseModel):
     summary: str
     purpose: str
     url: str
+
+class BatchResponse(BaseModel):
+    articles: List[HeadlineSummary]
+
 def get_summary(articles):
     load_dotenv()
     gemini_key = os.getenv("GEMINI_API_KEY")
     client = genai.Client(api_key=gemini_key)
     responses = list()
-    for article in articles:
-        prompt = f"""You are a news analyst. You will be given a news article below. For each one, produce a structured briefing in exactly the format specified.
+    for i in range(0, len(articles), 4):
+        article_input = articles[i:i+4]
+        prompt = f"""You are a news analyst. You will be given up to four news articles below. For each individual news article, produce a structured briefing in exactly the format specified.
 
-            The article is here: {article}
+            The articles are here: {article_input}
 
             For each article, output:
 
@@ -38,6 +44,8 @@ def get_summary(articles):
             **Summary:** A maximum of two sentences covering the key facts (who, what, when/where, outcome), giving enough information that a reader understands the article without opening it.
             **Purpose:** 2-4 sentences explaining why this story matters in the wider context, including relevant background or prior events, with a little more depth. Lead with the single most important insight.
             **URL:** Copy the URL exactly as provided.
+
+            At the end, you should have up to four sections, each containing a headline, summary, purpose and URL.
 
             Rules:
             - You should only summarise news articles. Please skip anything that is not a news article, such as cartoons or advertisements, or any irrelevant articles. You must include relevant articles.
@@ -58,9 +66,12 @@ def get_summary(articles):
             contents=prompt,
             config=types.GenerateContentConfig(
                 response_mime_type="application/json",
-                response_schema=HeadlineSummary,
+                response_schema=BatchResponse,
             ),
         )
-        responses.append(json.loads(response.text))
+
+        batch_result = json.loads(response.text)
+
+        responses.extend(batch_result["articles"])
 
     return responses

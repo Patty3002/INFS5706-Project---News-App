@@ -20,4 +20,3 @@ def get_headlines(category="business"):
     prep = prep_summary(no_dups)
     summary = get_summary(prep)
     return summary
-    
