@@ -5,8 +5,11 @@ import math
 import requests
 import json
 
+load_dotenv()
+gnews_key = os.getenv("GNEWS_API_KEY")
 
 NEWS_API_URL = "https://newsapi.org/v2/top-headlines"
+GNEWS_API_URL = f"https://gnews.io/api/v4/top-headlines?category=general&apikey={gnews_key}"
 
 
 # Gets the top headline for each category, country and page size,
@@ -109,3 +112,14 @@ def remove_similar_articles(articles):
                 articles.remove(temp_articles[j])
 
     return articles
+
+def get_top_headlines_gnews():
+    response = requests.get(
+        GNEWS_API_URL,
+        timeout=10,
+    )
+
+    response.raise_for_status()
+
+    return response.json()
+    
