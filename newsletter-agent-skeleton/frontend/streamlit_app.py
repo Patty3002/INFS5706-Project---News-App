@@ -11,6 +11,11 @@ st.set_page_config(
 
 st.title("📰 Daily Newsletter")
 st.write("Welcome to your daily newsletter! Let's get started.")
+st.write("""Note: Human on the loop required!
+            This app uses AI to turn messy headlines into neat summaries. Please make sure that you
+            cross-check and read articles of interest to confirm that all information is accurate. 
+        """
+)
 
 try:
     response = requests.get(
