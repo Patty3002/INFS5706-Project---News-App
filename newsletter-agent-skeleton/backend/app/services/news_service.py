@@ -108,7 +108,7 @@ def remove_similar_articles(articles):
         for j in range(i + 1, len(temp_articles)):
             raw_score = similarity_matrix[i][j].item()
             final_score = normalise_score(raw_score)
-            if final_score > 70:
+            if final_score > 80:
                 articles.remove(temp_articles[j])
 
     return articles

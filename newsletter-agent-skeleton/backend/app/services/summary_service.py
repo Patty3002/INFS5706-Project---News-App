@@ -20,6 +20,7 @@ def prep_summary(articles):
 
 class HeadlineSummary(BaseModel):
     headline: str
+    category: str
     summary: str
     purpose: str
     url: str
@@ -41,6 +42,7 @@ def get_summary(articles):
             For each article, output:
 
             **Headline:** Restate the headline exactly as provided.
+            **Category:** You should assign a category to the article based on its content into the following categories: Business (all business news), World (News from any country that is not Australia), Australia, Technology, Politics, Law, Science, Sport, Entertainment
             **Summary:** A maximum of two sentences covering the key facts (who, what, when/where, outcome), giving enough information that a reader understands the article without opening it.
             **Purpose:** 2-4 sentences explaining why this story matters in the wider context, including relevant background or prior events, with a little more depth. Lead with the single most important insight.
             **URL:** Copy the URL exactly as provided.
@@ -50,6 +52,7 @@ def get_summary(articles):
             Rules:
             - You should only summarise news articles. Please skip anything that is not a news article, such as cartoons or advertisements, or any irrelevant articles. You must include relevant articles.
             - Do not fabricate any information, or include any inappropriate information.
+            - News articles must have at least one and at most two categories. You should assign each article an appropriate category
             - Base the Summary only on the content provided. If only a headline or snippet is available, keep the summary limited to what it supports and say so.
             - You should try your best to find the key facts, but if they are missing (for example there is no information on who), you may omit that specific key fact.
             - The summary should separate and attribute any speculations, opinions or claims from established facts
