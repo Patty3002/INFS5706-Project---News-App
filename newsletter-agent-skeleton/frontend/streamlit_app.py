@@ -5,8 +5,7 @@ API_URL = "http://localhost:8000/api/v1/headlines"
 
 st.set_page_config(
     page_title="Daily Newsletter",
-    page_icon="📰",
-    layout="wide"
+    page_icon="📰"
 )
 
 st.title("📰 Daily Newsletter")
@@ -15,7 +14,7 @@ st.write("Welcome to your daily newsletter! Let's get started.")
 try:
     response = requests.get(
         API_URL,
-        timeout=60
+        timeout=90
     )
 
     response.raise_for_status()
@@ -24,7 +23,8 @@ try:
 
     for i, article in enumerate(articles, start=1):
         with st.container(border=True):
-            st.caption(f"Story {i}")
+            st.caption(f"Story {i} - {article["category"]}")
+            
             st.subheader(article["headline"])
 
             st.write("### Summary")
