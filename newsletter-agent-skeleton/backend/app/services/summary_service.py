@@ -56,7 +56,7 @@ def get_summary(articles):
             - Base the Summary only on the content provided. If only a headline or snippet is available, keep the summary limited to what it supports and say so.
             - You should try your best to find the key facts, but if they are missing (for example there is no information on who), you may omit that specific key fact.
             - The summary should separate and attribute any speculations, opinions or claims from established facts
-            - In Purpose, only reference background events you are confident about. If you are unsure, say so explicity rather than guessing.
+            - In Purpose, only reference background events you are confident about. If you are unsure, say so explicitly rather than guessing.
             - Never invent or alter a URL. If none is provided, write "Not provided".
             - Keep the original article order.
             - Use a neutral, factual tone. Try your best not to be biased

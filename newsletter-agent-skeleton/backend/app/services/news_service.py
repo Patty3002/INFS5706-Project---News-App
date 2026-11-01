@@ -7,14 +7,18 @@ import json
 
 load_dotenv()
 gnews_key = os.getenv("GNEWS_API_KEY")
+guardian_key = os.getenv("GUARDIAN_API_KEY")
 
 NEWS_API_URL = "https://newsapi.org/v2/top-headlines"
 GNEWS_API_URL = f"https://gnews.io/api/v4/top-headlines?category=general&lang=en&country=us&max=10&&apikey={gnews_key}"
+GUARDIAN_API_URL = f"https://content.guardianapis.com/search?api-key={guardian_key}"
 
 
 # Gets the top headline for each category, country and page size,
 # returning the result as JSON. For the prototype, the country ]
-# will be the US (its the only option for now on NewsAPI)
+# will be the US (only option in NewsAPI)
+
+# Source: NewsAPI
 
 def get_top_headlines(
     category,
@@ -113,6 +117,7 @@ def remove_similar_articles(articles):
 
     return articles
 
+# Gets a response from the GNews API
 def get_top_headlines_gnews():
     response = requests.get(
         GNEWS_API_URL,
@@ -122,4 +127,15 @@ def get_top_headlines_gnews():
     response.raise_for_status()
 
     return response.json()
+
+def get_headlines_guardian():
+    response = requests.get(
+        GUARDIAN_API_URL,
+        timeout=10
+    )
+
+    response.raise_for_status()
     
+    result = response.json()
+    result["articles"] = result.pop("results")
+    return result
