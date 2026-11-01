@@ -1,6 +1,5 @@
 import os
 from dotenv import load_dotenv
-from sentence_transformers import SentenceTransformer, util
 import math
 import requests
 import json
@@ -91,12 +90,12 @@ def normalise_score(score):
     shift = (score + 1) / 2
     skew = math.sqrt(shift)
     return round(skew * 100, 2)
-
+"""
 def remove_similar_articles(articles):
     model = SentenceTransformer('all-MiniLM-L6-v2')
 
     temp_articles = articles.copy()
-    """
+    
     for i in range(len(temp_articles)):
         title1 = temp_articles[i]["title"]
         for j in range(i + 1, len(temp_articles)):
@@ -106,7 +105,7 @@ def remove_similar_articles(articles):
             embedding2 = model.encode(title2, convert_to_tensor=True)
 
             similarity = util.cos_sim(embedding1, embedding2)
-    """
+    
     embeddings = model.encode(temp_articles, convert_to_tensor=True)
     similarity_matrix = util.cos_sim(embeddings, embeddings)
     for i in range(len(temp_articles)):
@@ -117,7 +116,7 @@ def remove_similar_articles(articles):
                 articles.remove(temp_articles[j])
 
     return articles
-
+"""
 # Gets a response from the GNews API
 def get_top_headlines_gnews():
     response = requests.get(
