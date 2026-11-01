@@ -1,7 +1,7 @@
 import streamlit as st
 import requests
 
-API_URL = "http://localhost:8000/api/v1/headlines"
+
 
 st.set_page_config(
     page_title="Daily Newsletter",
@@ -20,9 +20,12 @@ st.write("For more information about Human in the Loop practices, check out this
 
 try:
     response = requests.get(
-        API_URL,
-        timeout=90
+        f"{st.secrets['API_BASE_URL'].rstrip('/')}/api/v1/headlines",
+        params={"category": "business"},
+        timeout=90,
     )
+    response.raise_for_status()
+    headlines = response.json()
 
     response.raise_for_status()
 
