@@ -44,7 +44,7 @@ def get_summary(articles):
             **Headline:** Restate the headline exactly as provided.
             **Category:** You should assign a category to the article based on its content into the following categories: Business (all business news), World (News from any country that is not Australia), Australia, Technology, Politics, Law, Science, Sport, Entertainment
             **Summary:** A maximum of two sentences covering the key facts (who, what, when/where, outcome), giving enough information that a reader understands the article without opening it.
-            **Purpose:** 2-4 sentences explaining why this story matters in the wider context, including relevant background or prior events, with a little more depth. Lead with the single most important insight.
+            **Purpose:** 2-4 sentences explaining why this story matters in the wider context, including relevant background or prior events, with a little more depth. You must search at least 2 other articles on the web and use them to inform your purpose section, and you must also include the names and URLs of the articles you used. You should not use the article that you are summarising to explain the context. Lead with the single most important insight.
             **URL:** Copy the URL exactly as provided.
 
             At the end, you should have up to four sections, each containing a headline, summary, purpose and URL.
@@ -56,7 +56,7 @@ def get_summary(articles):
             - Base the Summary only on the content provided. If only a headline or snippet is available, keep the summary limited to what it supports and say so.
             - You should try your best to find the key facts, but if they are missing (for example there is no information on who), you may omit that specific key fact.
             - The summary should separate and attribute any speculations, opinions or claims from established facts
-            - In Purpose, only reference background events you are confident about. If you are unsure, say so explicitly rather than guessing.
+            - In Purpose, only reference background events you are confident about. You may use web search, however if you are unsure, say so explicity rather than guessing. For this section, you must also include the sources you used to generate the purpose section.
             - Never invent or alter a URL. If none is provided, write "Not provided".
             - Keep the original article order.
             - Use a neutral, factual tone. Try your best not to be biased

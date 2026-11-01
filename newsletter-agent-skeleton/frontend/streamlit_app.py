@@ -11,10 +11,12 @@ st.set_page_config(
 st.title("📰 Daily Newsletter")
 st.write("Welcome to your daily newsletter! Let's get started.")
 st.write("""Note: Human on the loop required!
-            This app uses AI to turn messy headlines into neat summaries. Please make sure that you
-            cross-check and read articles of interest to confirm that all information is accurate. 
+            This app uses AI. The AI is brilliant, but it sometimes sees things that aren’t there. 
+            If it tells you a penguin invented the stock market, please fact-check before investing. 🐧🤔
+            AI responses may be inaccurate. Please read all articles of interest to fact-check. 
         """
 )
+st.write("For more information about Human in the Loop practices, check out this website: (https://hai.stanford.edu/ai-definitions/what-is-human-in-the-loop)")
 
 try:
     response = requests.get(
