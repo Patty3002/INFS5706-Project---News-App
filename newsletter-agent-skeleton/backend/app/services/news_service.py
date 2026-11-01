@@ -139,3 +139,10 @@ def get_headlines_guardian():
     result = response.json()
     result["articles"] = result.pop("results")
     return result
+
+def process_guardian(result):
+    articles = result["articles"]
+    for article in articles:
+        response = requests.get(
+            article["apiurl"]
+        )
