@@ -5,6 +5,7 @@ from pydantic import BaseModel
 from dotenv import load_dotenv
 from typing import List
 import json
+import streamlit as st
 
 # Extracts the title, description, content and url from each article
 def prep_summary(articles):

@@ -6,8 +6,8 @@ import json
 import streamlit as st
 
 load_dotenv()
-gnews_key = st.secrets["GNEWS_API_KEY"]
-guardian_key = st.secrets["GUARDIAN_API_KEY"]
+gnews_key = os.getenv("GNEWS_API_KEY")
+guardian_key = os.getenv("GUARDIAN_API_KEY")
 
 NEWS_API_URL = "https://newsapi.org/v2/top-headlines"
 GNEWS_API_URL = f"https://gnews.io/api/v4/top-headlines?category=general&lang=en&country=us&max=10&&apikey={gnews_key}"
