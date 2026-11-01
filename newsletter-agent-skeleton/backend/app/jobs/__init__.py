@@ -1,1 +1,0 @@
-"""Scheduled-job package placeholder."""
